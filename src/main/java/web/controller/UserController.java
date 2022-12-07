@@ -35,15 +35,15 @@ public class UserController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String delete( @PathVariable long id) {
+    @RequestMapping (value = "/delete")
+    public String delete( @RequestParam (value = "id",required = false) Long id) {
         userService.removeUser(id);
         return "redirect:/" ;
     }
 
 
-    @GetMapping("edit/{id}")
-    public String updateUser(@PathVariable("id") long id, Model model) {
+    @GetMapping("/editUser")
+    public String updateUser(@RequestParam("id") long id, Model model) {
         model.addAttribute(userService.getUserById(id));
         return "edit";
     }
