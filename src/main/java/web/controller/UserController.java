@@ -5,7 +5,6 @@ import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -25,28 +24,23 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/{id}")
-    public String getUser (@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "user";
-    }
-
     @GetMapping("/new")
     public String addUser(User user) {
         return "create";
     }
 
     @PostMapping("/new")
-    public String add(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    public String add(@ModelAttribute("user") @Valid User user) {
         userService.addUser(user);
         return "redirect:/";
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String delete( @PathVariable long id) {
         userService.removeUser(id);
-        return "redirect:/";
+        return "redirect:/" ;
     }
+
 
     @GetMapping("edit/{id}")
     public String updateUser(@PathVariable("id") long id, Model model) {
@@ -55,7 +49,7 @@ public class UserController {
     }
 
     @PatchMapping("/edit")
-    public String update(@Valid User user, BindingResult bindingResult) {
+    public String update(@Valid User user) {
         userService.updateUser(user);
         return "redirect:/";
 
