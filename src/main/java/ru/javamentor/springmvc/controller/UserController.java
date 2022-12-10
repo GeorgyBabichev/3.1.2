@@ -1,12 +1,11 @@
-package web.controller;
+package ru.javamentor.springmvc.controller;
 
-import web.model.User;
-import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+import ru.javamentor.springmvc.model.User;
+import ru.javamentor.springmvc.service.UserService;
 
 @Controller
 public class UserController {
@@ -30,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String add(@ModelAttribute("user") @Valid User user) {
+    public String add(@ModelAttribute("user")User user) {
         userService.addUser(user);
         return "redirect:/";
     }
@@ -48,8 +47,8 @@ public class UserController {
         return "edit";
     }
 
-    @PatchMapping("/edit")
-    public String update(@Valid User user) {
+    @PostMapping("/edit")
+    public String update(User user) {
         userService.updateUser(user);
         return "redirect:/";
 

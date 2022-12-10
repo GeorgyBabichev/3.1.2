@@ -1,6 +1,9 @@
-package web.dao;
+package ru.javamentor.springmvc.dao;
 
-import web.model.User;
+
+
+import ru.javamentor.springmvc.model.User;
+
 import java.util.List;
 
 public interface UserDao {

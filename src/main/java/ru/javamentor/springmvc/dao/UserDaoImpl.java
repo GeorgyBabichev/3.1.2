@@ -1,11 +1,11 @@
-package web.dao;
+package ru.javamentor.springmvc.dao;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.User;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import ru.javamentor.springmvc.model.User;
+
 import java.util.List;
 
 @Component
